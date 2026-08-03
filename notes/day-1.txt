@@ -109,6 +109,33 @@ change detection:
 Zone.js -> used to inform angular about changes
 signal -> 
 
+@NgModule({
+	declarations:[NgModelDirective],
+	exports: [NgModelDirective]
+})
+export class FormsModule{
+
+}
+
+@Directive({
+	selector:'[ngModel]',
+	standalone:false
+})
+export class NgModelDirective{
+	function(first){
+		const ctrl = new FormControl()
+		ctrl.value = first
+		ctrl.addEventHandler('valueChanges', function(e){
+			ctrl.value = e.target.value
+		})
+	}
+}
+
+
+two approaches:
+	1. non-modular (standalone)
+	2. modular (non-standalone)
+
 
 
 
