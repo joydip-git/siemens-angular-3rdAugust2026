@@ -1,0 +1,41 @@
+git repository:
+https://github.com/joydip-git/siemens-angular-3rdAugust2026
+
+Angular:
+--------------
+JavaScript/TypeScript
+Node JS
+
+
+JS:
+-------------
+1. Boolean
+2. string - 'siemens' or "siemens"
+3. number
+4. object
+
+keywords: undefined, NaN, Infinity, null etc.
+
+declare variables:
+var, let or const
+
+TS:
+-------------
+1. static type checking
+2. strict data typing
+
+browser JS engine:
+------------------------
+safari		: JS Core (indigo)
+firefox		: spidermonkey
+chrome		: v8
+edge		: chakra -> v8
+opera		: chromekit
+
+2009 - Ryan Dahl
+
+v8 -> v8 engine (off the browser)
+Node JS -> JS runtime
+
+
+
