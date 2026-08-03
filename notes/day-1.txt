@@ -37,5 +37,80 @@ opera		: chromekit
 v8 -> v8 engine (off the browser)
 Node JS -> JS runtime
 
+JS/TS common features:
+-------------------------------
+class, constructor, super and extends keywords
+var, let, const keywords
+control flow statements and operators
+etc....
+
+TS extra features:
+-------------------------
+data type and keywords: any, unknown, Readonly type, readonly keyword etc.
+class: access specifiers of members (public [default], private, protected)
+interface and implements keyword
+generic methods, classes and interfaces
+type keyword to create custom types
+	- custom type created from existing type
+	- data type for function 
+	- for variable typification for model types
+etc.
+
+Angular:
+-----------------------
+tool to create Angular app: Angular CLI
+
+Installing Angular CLI: npm i @angular/cli --global
+global path:
+C:\users\<user-name>\AppData\Roaming\npm
+
+>ng new <app-name>
+
+component	class ProductList
+service		class
+pipe		class
+
+angular.json
+tsconfig.json
+
+angular packages:
+---------------------
+@angular/core
+@angular/common
+@angular/platform-browser
+@angular/forms
+@angular/router
+
+
+const h2Element:HTMLElement = document.createElement('h2')
+h2Element.innerText = title
+
+<h2>
+{{title}}
+</h2>
+
+
+binding:
+	data: passing data from code of the component to the template of the same component
+		syntax: 
+		a. interpolation: {{ prop-name}} 
+		note: value is stringified before being rendered
+
+		b. property binding:
+		<element [attr]="prop-name">
+		note: value is NOT stringified before being rendered
+
+	event: passing data from the template of the component to the code of the same component
+		syntac: <elemnt (event-name)="method-in-code(args...)">
+
+change detection:
+	angular detects the change in the properties of the component and accordingly updates every element in the template where the same is bound
+
+Zone.js -> used to inform angular about changes
+signal -> 
+
+
+
+
 
 
