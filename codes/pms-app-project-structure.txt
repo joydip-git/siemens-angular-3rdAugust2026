@@ -1,38 +1,54 @@
-pms-app
-	app
-		app.ts
-		app.html
-		app.css
-		app.spec.ts
+app name: pms-app
+
+src (folder)
+	index.html
+	index.css
+	main.ts
+
+	app (folder)
+
 		app.conig.ts
 		app-routes.ts
 
-		products
-			models
-				product.ts
-			data
-				product-records.ts
-			components
-				product-container
-					product-container.ts
-					product-container.html
-					product-container.css
-					product-container.spec.ts
+		modules (folder)
 
-				product-list
-					product-list.ts
-					product-list.html
-					product-list.css
-					product-list.spec.ts
+			root (folder)
+				app.ts
+				app.html
+				app.css
+				app.spec.ts
 
-				filter-product
-					filter-product.ts
-					filter-product.css
-					filter-product.html
-					filter-product.spec.ts
+			products (folder)
+
+				models (folder)
+					product.ts (file with Product type)
+
+				data (folder)
+					product-records.ts (array of Product)
+
+				components (folder)
+
+					product-container (folder)
+						product-container.ts
+						product-container.html
+						product-container.css
+						product-container.spec.ts
+
+					product-list (folder)
+						product-list.ts
+						product-list.html
+						product-list.css
+						product-list.spec.ts
+
+					filter-product (folder)
+						filter-product.ts
+						filter-product.css
+						filter-product.html
+						filter-product.spec.ts
 			
-			pipes
-				product-filter.pipe.ts
+				pipes (folder)
+					product-filter-pipe.ts
+					product-filter-pipe.spec.ts
 
 
 @for(p of products|productfilter:filterText;track index){
