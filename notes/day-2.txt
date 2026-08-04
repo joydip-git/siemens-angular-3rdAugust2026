@@ -1,0 +1,93 @@
+Modular: ng new <app-name> --standalone=false
+
+@NgModule({
+	//registering components, directives, pipes
+	declarations:[AppComponent, AppPipe, AppDirective],
+	providers:[AppService],
+	imports:[BrowserModule, OrderModule],
+	exports:[AppComponent],
+	bootstrap:[AppComponent]
+})
+export class AppModule{
+}
+
+Non-modular: ng new <app-name> [--standalone=true]
+
+@Component({
+	imports:[OtherComponent, OtherPipe, OtherDirective],
+	providers: [OtherService]
+})
+export class App{
+}
+
+FormsModule -> NgModelDirective -> ngModel
+
+<input [(ngModel)]="propname">
+
+NgModelDirective object -> FormControl 
+		-> [Value]="propname"
+		-> (ValueChanges)="update prop name"
+
+signal() => WritableSignal<T>
+	-> set and update
+computed() -> 
+
+
+
+1. how to display array of values
+2. conditional rendering
+
+const numbers = [1,2,3,4] or new Array(1,2,3,4)
+for(const num of numbers){
+	clg(num)
+}
+
+for(const index in numbers){
+	clg(numbers[index])
+}
+
+const filtered= numbers
+	.filter((num) => num%2===0)
+
+directive types:
+-----------------------
+a. structural directive: manipulate DOM
+*ngIf, *ngFor, *ngSwitch etc.
+
+b. attribute directive: extend the behavior of existing elements
+ngModel, ngForm etc.
+
+c. component directive: a component
+@Component({})
+
+@Directive({
+	selector:'[ngSome]'
+})
+export class NgSomeDirective{
+}
+
+
+passing data from one to another component:
+------------------------------------------------
+1. the components are in the same tree
+	A. one is the parent of another but shallowly nested
+	B. one is the parent of another but deeply nested
+
+2. the components are not in the same tree or they are routed components
+
+
+passing data from a parent component to a shallowly nested component:
+------------------------------------------------------------------------
+a. to pass data from parent to nested/child: data binding
+b. to pass data from the nested/child to its parent: event binding
+
+
+const obj = {id:1, name:'anil'}
+const copy = {
+	...obj, 
+	name: 'anil kumar'
+}
+
+	
+
+

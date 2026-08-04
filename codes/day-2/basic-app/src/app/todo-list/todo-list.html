@@ -1,0 +1,27 @@
+<h2>List of Todos</h2>
+<br>
+
+
+<!-- <ul *ngIf="todorecords.length>0"> -->
+<!-- <li *ngFor="let t of todorecords">
+    {{t.title}}
+  </li> -->
+
+<!-- </ul> -->
+
+@if(todorecords.length>0){
+<ul>
+    @for (t of todorecords; track $index) {
+    <li>{{t.title}} &nbsp; {{t.userId}}</li>
+    }
+</ul>
+<br>
+<br>
+<table>  
+    @for (t of todorecords; track $index) {
+    <app-todo-row [todoinfo]="t" (todoinfoChange)="updateTodo($event)"></app-todo-row>
+    }
+</table>
+}@else {
+<span>no records</span>
+}
