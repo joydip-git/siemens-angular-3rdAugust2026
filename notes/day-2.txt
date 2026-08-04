@@ -88,6 +88,29 @@ const copy = {
 	name: 'anil kumar'
 }
 
+Pipe: used for data transformation
+
+@Pipe({
+	name:'uppercase'
+})
+export class UpperCasePipe implements PipeTransform{	transform(value:any,...args:any[]):string{
+		return value.toLocaleUpperCase()
+	}
+}
+
+todo.title|uppercase -> new UpperCasePipe().transform(todo.title)
+
+@Pipe({
+	name:'curreny'
+})
+export class CurrencyPipe implements PipeTransform{	transform(value:any,...args:any[]):string{
+		return ....
+	}
+}
+
+
+p.Price|currency:'':'':''
+
 	
 
 

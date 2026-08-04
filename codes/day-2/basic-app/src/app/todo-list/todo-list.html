@@ -1,27 +1,26 @@
 <h2>List of Todos</h2>
 <br>
-
-
-<!-- <ul *ngIf="todorecords.length>0"> -->
-<!-- <li *ngFor="let t of todorecords">
-    {{t.title}}
-  </li> -->
-
-<!-- </ul> -->
-
 @if(todorecords.length>0){
-<ul>
-    @for (t of todorecords; track $index) {
-    <li>{{t.title}} &nbsp; {{t.userId}}</li>
-    }
-</ul>
+<div>
+    <label for="ddlTodos">Select a task: &nbsp;</label>
+    <select name="todoSelect" id="ddlTodos" (change)="changeSelectedTodo(+(ddl.options[ddl.selectedIndex].value))" #ddl>
+        <option selected disabled value="0">--select--</option>
+        @for (todo of todorecords; track $index) {
+        <option [value]="todo.id">
+            {{todo.title}} [{{todo.userId}}]
+            &nbsp;{{todo.completed?'done':'pending'}}
+        </option>
+        }
+    </select>
+</div>
 <br>
-<br>
-<table>  
-    @for (t of todorecords; track $index) {
-    <app-todo-row [todoinfo]="t" (todoinfoChange)="updateTodo($event)"></app-todo-row>
+<div>
+    @if(selectedTodo){
+    <app-todo-detail [todoData]="selectedTodo" (todoDataChange)="updateTodo($event)"></app-todo-detail>
+    }@else {
+    <span>select a title to view the details</span>
     }
-</table>
+</div>
 }@else {
-<span>no records</span>
+<span>No records</span>
 }

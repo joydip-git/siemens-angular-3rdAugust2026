@@ -1,0 +1,51 @@
+@if(todoinfo){
+<table>
+    <tr>
+        <td>
+            <label for="txtTitle">
+                Task: &nbsp;
+            </label>
+        </td>
+        <td>
+            <!-- <input id="txtTitle" type="text" [value]="todoinfo.title|uppercase" (input)="changeTodo({
+            ...todoinfo,
+            title:$event.target.value
+        })"> -->
+        <input id="txtTitle" type="text" [value]="todoinfo.title|applowercase" (input)="changeTodo({
+                    ...todoinfo,
+                    title:$event.target.value
+                })">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="txtUserId">
+                Assigned To: &nbsp;
+            </label>
+        </td>
+        <td>
+            <!-- <input type="text" id="txtUserId" [value]="todoinfo.userId|currency:'INR'" (input)="changeTodo({
+            ...todoinfo,
+            userId:+$event.target.value
+        })"> -->
+            <input type="text" id="txtUserId" [value]="todoinfo.userId" (input)="changeTodo({
+                    ...todoinfo,
+                    userId:+$event.target.value
+                })">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="txtStatus">
+                Status: &nbsp;
+            </label>
+        </td>
+        <td>
+            <input type="checkbox" id="txtStatus" [checked]="todoinfo.completed" (change)="changeTodo({
+                ...todoinfo,
+                completed:$event.target.checked
+            })">
+        </td>
+    </tr>
+</table>
+}
