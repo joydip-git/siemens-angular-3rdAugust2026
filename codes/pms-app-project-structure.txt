@@ -1,0 +1,40 @@
+pms-app
+	app
+		app.ts
+		app.html
+		app.css
+		app.spec.ts
+		app.conig.ts
+		app-routes.ts
+
+		products
+			models
+				product.ts
+			data
+				product-records.ts
+			components
+				product-container
+					product-container.ts
+					product-container.html
+					product-container.css
+					product-container.spec.ts
+
+				product-list
+					product-list.ts
+					product-list.html
+					product-list.css
+					product-list.spec.ts
+
+				filter-product
+					filter-product.ts
+					filter-product.css
+					filter-product.html
+					filter-product.spec.ts
+			
+			pipes
+				product-filter.pipe.ts
+
+
+@for(p of products|productfilter:filterText;track index){
+	
+}
