@@ -111,6 +111,99 @@ export class CurrencyPipe implements PipeTransform{	transform(value:any,...args:
 
 p.Price|currency:'':'':''
 
+
+Service and Dependency Injection:
+-----------------------------------------
+a place to write common business/ data acces logic etc.
+
+1. create service
+2. register a provider for the service and consume the service
+	
+	a provider object holds metadata of something that needs to be dependency injected
+	properties:
+	i. provide -> for assigning token value
+	ii. useX -> what to be dependency injected
+		- useClass: type of class whose instance has to be DIed
+		- useValue: value to be DIed
+		- useExisting: almost similar to useClass
+		- useFactory: a factory function which will return the item to be DIed
+
+	types of providers:
+	a. ClassProvider [provide, useClass]
+	b. ValueProvider [provide, useValue]
+	c. ExistingProvider [provide, useExisting]
+	d. FactoryProvider [provide, useFactory]
+
+	base type of all -> Provider
+	
+	place: use 'providers' property at
+		a. component level -> deciated instance for every instance of the component
+		b. global (app.config.ts file) -> deciated singleton instance for entire app
+
+	provider: 
+
+	1. class name is used as token 
+	const provider:Provider ={
+		provide: CalculationService
+		useClass: CalculationService
+	}
+
+	register: providers:[provider] or providers:[CalculationService]
+
+	consume:
+	private svcRef: CalculationService;
+	constructor(svc: CalculationService){
+		this.svcRef = svc
+	}
+	
+	
+
+	2. custom token 
+
+	i. string token:
+	const TOKEN ='TOKEN'
+		
+	ii. InjectionToken
+	const TOKEN =new InjectionToken<ServiceContract>('TOKEN')
+
+	provider:
+	const provider:Provider ={
+		provide: TOKEN
+		useClass: CalculationService
+
+	}
+
+	registration:
+	providers:[provider]
+
+	consume:
+	private svcRef: ServiceContract;
+	constructor(@Inject(TOKEN) svc: ServiceContract){
+		this.svcRef = svc; 
+	}
+
+
+	const SECRET_KEY_TOKEN ='SECRET_KEY_TOKEN'
+	const provider:Provider ={
+		provide: SECRET_KEY_TOKEN,
+		useValue: 'secret_key'
+		or
+		useFactory: () => {
+			//factory code	
+		}
+	}
+	providers:[provider]
+
+	private url:string;
+	constructor(@Inject(SECRET_KEY_TOKEN) apiUrl:string){
+	}
+
+
+	
+
+
+
+
 	
 
 

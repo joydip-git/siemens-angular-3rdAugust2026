@@ -1,4 +1,4 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, output, OutputEmitterRef, signal } from '@angular/core';
 
 @Component({
   selector: 'app-filter-product',
@@ -8,7 +8,7 @@ import { Component, output, signal } from '@angular/core';
 })
 export class FilterProduct {
   filterValue = signal('')
-  filterValueChanged = output<string>({ alias: 'filterValueUpdated' })
+  filterValueChanged: OutputEmitterRef<string> = output<string>({ alias: 'filterValueUpdated' })
 
   updateFilterValue(value: string) {
     this.filterValue.set(value)

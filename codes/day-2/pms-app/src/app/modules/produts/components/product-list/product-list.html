@@ -12,7 +12,9 @@
         </tr>
     </thead>
     <tbody>
-        @for (p of products()|productFilter:filterText(); track $index) {
+        <!-- @for (p of products(); track $index) -->
+        @for (p of products()|productFilter:filterText(); track $index)
+        {
         <tr>
             <td>
                 <img [src]="p.imageUrl" alt="NA" [title]="p.productName" class="img-box">
