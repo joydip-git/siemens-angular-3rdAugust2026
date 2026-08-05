@@ -1,0 +1,42 @@
+@if(!isRequestOver()){
+<app-spinner></app-spinner>
+}@else if(errorInfo()!==''){
+<span>{{errorInfo()}}</span>
+}@else if(products().length===0){
+<app-no-record [noRecordMessage]="message"></app-no-record>
+}@else {
+<table>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- @for (p of products(); track $index) -->
+        @for (p of products()|productFilter:filterText(); track $index)
+        {
+        <tr>
+            <td>
+                <img [src]="p.imageUrl" alt="NA" [title]="p.productName" class="img-box">
+            </td>
+            <td>
+                {{p.productName}}
+            </td>
+            <td>
+                {{p.price}}
+            </td>
+            <td>
+                {{p.starRating}}
+            </td>
+            <td>
+                <button type="button">Delete</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}

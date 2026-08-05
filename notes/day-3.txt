@@ -44,3 +44,30 @@ methods: get(), post(), put(), delete(), patch() etc.
 register built-in service provider object by calling this method: provideHttpClient() at the root level
 
 
+http://..../todos -> TodoList
+
+Route -> {path: 'todos', component:TodoList}
+
+const appRoutes:Routes=[{path: 'todos', component:TodoList}]
+
+Router -> built-in service class
+engine 
+	- to which array of routes has to be registered
+	- reads the URL from the browser and tries to find the best match route
+
+RouterOutlte -> built-in directive
+Acts as a placeholder that Angular dynamically fills based on the current router state.
+
+Each outlet can have a unique name, determined by the optional name attribute. The name cannot be set or changed
+
+
+ActivatedRoute -> built-in service class
+
+{ id:"1", x:"10"}
+
+
+
+
+
+
+
