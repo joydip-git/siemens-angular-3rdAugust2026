@@ -2,6 +2,7 @@ import { Component, inject, Inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CalculationService, ServiceContract } from '../services/calculation.service';
 import { SERVICE_TOKEN } from '../config/constants';
+import { CalculationManagerService } from '../services/calculation-manager.service';
 
 @Component({
   selector: 'app-calculator',
@@ -36,29 +37,15 @@ export class Calculator {
   //   this.svc = svc
   // }
   //or
-  private svc: ServiceContract = inject<ServiceContract>(SERVICE_TOKEN);
-
+  //private svc: ServiceContract = inject<ServiceContract>(SERVICE_TOKEN);
+  private svc: CalculationManagerService;
+  constructor(svc: CalculationManagerService) {
+    this.svc = svc
+  }
+  
   calculate() {
-
-    switch (this.calculationChoice()) {
-      case 1:
-        this.result.set(this.svc.add(this.first(), this.second()))
-        break;
-
-      case 2:
-        this.result.set(this.svc.subtract(this.first(), this.second()))
-        break;
-
-      case 3:
-        this.result.set(this.svc.multiply(this.first(), this.second()))
-        break;
-
-      case 4:
-        this.result.set(this.svc.divide(this.first(), this.second()))
-        break;
-
-      default:
-        break;
-    }
+    const res = this.svc.performCalculation(this.calculationChoice(), this.first(), this.second())
+    if (res)
+      this.result.set(res)
   }
 }

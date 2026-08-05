@@ -25,6 +25,13 @@ src (folder)
 
 				data (folder)
 					product-records.ts (array of Product)
+		
+				services (folder)
+					service-contract.ts (interface)
+					product-service.ts (service class)
+
+				config
+					constants.ts [token, method to create and return a provider]
 
 				components (folder)
 

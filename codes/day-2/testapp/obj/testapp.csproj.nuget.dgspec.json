@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\testapp.csproj": {}
+    "e:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\testapp.csproj": {}
   },
   "projects": {
-    "E:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\testapp.csproj": {
+    "e:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\testapp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\testapp.csproj",
+        "projectUniqueName": "e:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\testapp.csproj",
         "projectName": "testapp",
-        "projectPath": "E:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\testapp.csproj",
+        "projectPath": "e:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\testapp.csproj",
         "packagesPath": "C:\\Users\\joydi\\.nuget\\packages\\",
-        "outputPath": "E:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\obj\\",
+        "outputPath": "e:\\trainings\\siemens-angular-3rdAugust2026\\codes\\day-2\\pms-app\\testapp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

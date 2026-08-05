@@ -1,26 +1,47 @@
-Modular: ng new <app-name> --standalone=false
+Types of Angular app:
+--------------------------
+1. Modular:
+
+Command to create Modular Angular app: ng new <app-name> --standalone=false
+
+Module class example:
 
 @NgModule({
 	//registering components, directives, pipes
 	declarations:[AppComponent, AppPipe, AppDirective],
+
+	//register services here
 	providers:[AppService],
+
+	//import built-in and application feature modules
 	imports:[BrowserModule, OrderModule],
+
+	//mention the name of registered components, pipes, directives, modules that can be exported to another module by 	importing this module
 	exports:[AppComponent],
+
+	//which component(s) is/are bootstrapped by default when the module is pulled
 	bootstrap:[AppComponent]
 })
 export class AppModule{
 }
 
-Non-modular: ng new <app-name> [--standalone=true]
+2. Non-modular/Standalone Angular app:
+--------------------------------------------
+Command to create Non-modular Angular app: ng new <app-name> [--standalone=true]
+Note: directly import pipe, directive or register services in the component itself
 
+Example: 
 @Component({
+	//import other component, pipe, directive or modules here
 	imports:[OtherComponent, OtherPipe, OtherDirective],
+
+	//register services here
 	providers: [OtherService]
 })
 export class App{
 }
 
-FormsModule -> NgModelDirective -> ngModel
+FormsModule <- NgModelDirective [ngModel]
 
 <input [(ngModel)]="propname">
 
@@ -28,14 +49,16 @@ NgModelDirective object -> FormControl
 		-> [Value]="propname"
 		-> (ValueChanges)="update prop name"
 
+different types of signal:
+------------------------------
 signal() => WritableSignal<T>
 	-> set and update
 computed() -> 
 
 
 
-1. how to display array of values
-2. conditional rendering
+1. how to display array of values (@for)
+2. conditional rendering (@if, @else, @else if)
 
 const numbers = [1,2,3,4] or new Array(1,2,3,4)
 for(const num of numbers){
@@ -49,7 +72,8 @@ for(const index in numbers){
 const filtered= numbers
 	.filter((num) => num%2===0)
 
-directive types:
+
+Directive types:
 -----------------------
 a. structural directive: manipulate DOM
 *ngIf, *ngFor, *ngSwitch etc.
@@ -81,13 +105,16 @@ passing data from a parent component to a shallowly nested component:
 a. to pass data from parent to nested/child: data binding
 b. to pass data from the nested/child to its parent: event binding
 
-
+spread operator:
+-----------------------
 const obj = {id:1, name:'anil'}
 const copy = {
 	...obj, 
 	name: 'anil kumar'
 }
 
+Pipes in Angular:
+----------------------------------
 Pipe: used for data transformation
 
 @Pipe({
@@ -114,12 +141,18 @@ p.Price|currency:'':'':''
 
 Service and Dependency Injection:
 -----------------------------------------
-a place to write common business/ data acces logic etc.
+service: a place to write common business/ data acces logic etc.
+1. create a service class with necessary methods and data
+	for loose coupling use interface as contract for service
+
+2. register service provider
+3. consume the service -> using constructor injection or using "inject()" method
 
 1. create service
 2. register a provider for the service and consume the service
 	
 	a provider object holds metadata of something that needs to be dependency injected
+
 	properties:
 	i. provide -> for assigning token value
 	ii. useX -> what to be dependency injected
@@ -143,6 +176,7 @@ a place to write common business/ data acces logic etc.
 	provider: 
 
 	1. class name is used as token 
+------------------------------------------------------
 	const provider:Provider ={
 		provide: CalculationService
 		useClass: CalculationService
@@ -155,7 +189,10 @@ a place to write common business/ data acces logic etc.
 	constructor(svc: CalculationService){
 		this.svcRef = svc
 	}
-	
+
+	or 
+	private svcRef: CalculationService = inject(CalculationService)
+
 	
 
 	2. custom token 
@@ -164,7 +201,7 @@ a place to write common business/ data acces logic etc.
 	const TOKEN ='TOKEN'
 		
 	ii. InjectionToken
-	const TOKEN =new InjectionToken<ServiceContract>('TOKEN')
+	const TOKEN = new InjectionToken<ServiceContract>('TOKEN')
 
 	provider:
 	const provider:Provider ={
@@ -182,6 +219,9 @@ a place to write common business/ data acces logic etc.
 		this.svcRef = svc; 
 	}
 
+	or 
+	private svcRef: ServiceContract = inject<ServiceContract>(TOKEN)
+
 
 	const SECRET_KEY_TOKEN ='SECRET_KEY_TOKEN'
 	const provider:Provider ={
@@ -198,6 +238,14 @@ a place to write common business/ data acces logic etc.
 	constructor(@Inject(SECRET_KEY_TOKEN) apiUrl:string){
 	}
 
+	or
+	private url:string;
+	constructor(){
+		this.url = inject(SECRET_KEY_TOKEN)
+	}
+
+	or
+	private url = inject(SECRET_KEY_TOKEN)
 
 	
 
