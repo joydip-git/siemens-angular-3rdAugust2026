@@ -37,3 +37,10 @@ JS is single threaded
 no facility/api to create multiple threads
 
 
+HTTP Requests:
+-------------------------
+built-in service class: HttpClient
+methods: get(), post(), put(), delete(), patch() etc.
+register built-in service provider object by calling this method: provideHttpClient() at the root level
+
+
