@@ -1,5 +1,7 @@
+<!-- <button type="button" (click)="toggle()">Toggle</button>
+<br> -->
 @if(products().length===0){
-<span>No Products</span>
+<app-no-record [noRecordMessage]="message"></app-no-record>
 }@else {
 <table>
     <thead>

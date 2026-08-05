@@ -1,0 +1,39 @@
+side-effect causing code:
+------------------------------
+	- fetching data from file (Async)
+	- fetching data from db (Async)
+	- fetching data from RESTful API server (Async)
+	- sending request or receiving response through web socket
+
+write that code in
+	- a handler function connected to some user-invoked event such as click, change, input etc.
+	- a handler which is connected to an event when component gets loaded
+
+component's lifecycle and events:
+-----------------------------------
+1. mounting phase: very first time the component gets rendered in the UI
+	a. component's constructor is called, fields are initialized
+	b. "changes" event gets fired: this event gets fired if the component has an @Input() decorated property and from parent the nested component receives data
+	c. "init" event gets fired: this event gets fired ONLY ONE TIME in the whole lifecycle. it is used for furthet initialization of some class properties
+
+2. update phase:
+	only "changes" event gets fired every time a component gets new data from parent via @Input() decorated property
+
+3. destruction phase:
+	an event "destroy" gets fired: clean up resources
+
+
+event		interface		handler
+-----------------------------------------------------
+changes		OnChanges		ngOnChanges
+init		OnInit			ngOnInit
+destroy		OnDestroy		ngOnDestroy
+
+
+
+asynchronous operation in JS:
+---------------------------------
+JS is single threaded
+no facility/api to create multiple threads
+
+

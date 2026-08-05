@@ -10,6 +10,11 @@ src (folder)
 		app.conig.ts
 		app-routes.ts
 
+		config (folder)
+			constants.ts [token and other const variables]
+			service-providers.ts [method(s) to create and return a provider]
+
+
 		modules (folder)
 
 			root (folder)
@@ -28,11 +33,8 @@ src (folder)
 		
 				services (folder)
 					service-contract.ts (interface)
-					product-service.ts (service class)
-
-				config
-					constants.ts [token, method to create and return a provider]
-
+					product.service.ts (service class)
+				
 				components (folder)
 
 					product-container (folder)
