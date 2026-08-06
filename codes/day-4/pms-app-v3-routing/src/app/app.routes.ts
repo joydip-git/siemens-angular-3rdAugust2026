@@ -5,8 +5,10 @@ import { EditProduct } from './modules/products/components/edit-product/edit-pro
 import { AddProduct } from './modules/products/components/add-product/add-product';
 import { Home } from './modules/shared/components/home/home';
 import { PageNotFound } from './modules/shared/components/page-not-found/page-not-found';
+import { Login } from './modules/auth/components/login/login';
 
 export const routes: Routes = [
+    { path: 'login', component: Login },
     {
         path: 'products',
         children: [
