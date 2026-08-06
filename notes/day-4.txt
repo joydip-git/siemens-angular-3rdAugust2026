@@ -13,8 +13,10 @@ RouterStateSnapshot -> a type that represents the current state of the RouterSta
 
 2. built-in services:
 ---------------------
+provideRouter(array of Route objects/Routes type object) -> call this method to register the providers for all the required services w.r.t. routing
+
 Router -> represents the core router engine
-	  an array or routes must be registered with router
+	  an array of routes must be registered with router
 	  it can read URLs from browser and accordingly match it to a Route
 	  it can write to the browser (change the URL)
 	  provides different facilities, such as methods to navigate
@@ -34,7 +36,11 @@ routerLink -> 	helps to navigate without reloading the application
 		can form an URL when an array of URL fragments are passed by building the same from left to right
 		import RouterLink to use the same
 
+<element routerLink="/todos">
+or
+<element [routerLink]="['/todos','view',todo.id]"
+
 4. built-in component directive:
 ---------------------------------------
-RouterOutlet -> Acts as a placeholder that Angular dynamically fills based on the current router state.
+RouterOutlet [router-outlet] -> Acts as a placeholder that Angular dynamically fills based on the current router state.
 Each outlet can have a unique name, determined by the optional name attribute. The name cannot be set or changed

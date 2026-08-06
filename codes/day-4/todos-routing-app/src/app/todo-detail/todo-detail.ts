@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Params } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-detail',
@@ -8,12 +8,17 @@ import { ActivatedRoute, ActivatedRouteSnapshot, Params } from '@angular/router'
   styleUrl: './todo-detail.css',
 })
 export class TodoDetail implements OnInit {
-  private route = inject(ActivatedRoute)
+  private currentRoute = inject(ActivatedRoute)
+  private router = inject(Router)
 
   ngOnInit(): void {
-    const snapshot: ActivatedRouteSnapshot = this.route.snapshot;
+    const snapshot: ActivatedRouteSnapshot = this.currentRoute.snapshot;
     const params: Params = snapshot.params
     const id = Number(params["id"])
     console.log(id);
+  }
+
+  goBack() {    
+    this.router.navigate(['/todos'])
   }
 }

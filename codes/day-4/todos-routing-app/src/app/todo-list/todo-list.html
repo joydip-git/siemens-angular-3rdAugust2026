@@ -17,7 +17,7 @@
         @for (todo of todos(); track $index) {
         <tr>
             <td>
-                <u [routerLink]="['/todos/view',todo.id]">{{todo.title}}</u>
+                <u [routerLink]="['/todos','view',todo.id]">{{todo.title}}</u>
             </td>
             <td>{{todo.userId}}</td>
             <td>
