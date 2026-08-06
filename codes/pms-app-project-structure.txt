@@ -60,6 +60,28 @@ src (folder)
 					product-filter-pipe.spec.ts
 
 
-@for(p of products|productfilter:filterText;track index){
-	
-}
+routing:
+-----------------
+url			component
+--------------------------------------
+/products		ProductContainer [ProductList + FilterProduct]
+/products/view/:id	ProductDetail [to be created in products\components folder]
+/products/edit		EditProduct [to be created in products\components folder]
+http://localhost:4200/edit?id=1
+/products/add		AddProduct [to be created in products\components folder]
+
+
+/home			Home [to be created in shared\components folder]
+''			Home [redirection]
+/anythingelse		PageNotFound [to be created in shared\components folder]
+
+Non-routed component
+DashBoard		[to be created in shared\components folder]
+with 3 links -> home, products, add product
+
+
+
+
+
+
+
