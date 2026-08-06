@@ -1,4 +1,4 @@
-import { Component, inject, input, InputSignal, OnDestroy, OnInit, signal, , WritableSignal } from '@angular/core';
+import { Component, inject, input, InputSignal, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductFilterPipe } from "../../pipes/product-filter-pipe";
 import { ServiceContract } from '../../services/service-contract';
@@ -7,10 +7,13 @@ import { NoRecord } from '../../../shared/components/no-record/no-record';
 import { Observable, Subscription } from 'rxjs';
 import { Spinner } from "../../../shared/components/spinner/spinner";
 import { ApiResponse } from '../../models/api-response';
+import { CurrencyPipe, UpperCasePipe } from '@angular/common';
+import { Star } from "../../../shared/components/star/star";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-product-list',
-  imports: [ProductFilterPipe, NoRecord, Spinner],
+  imports: [ProductFilterPipe, NoRecord, Spinner, CurrencyPipe, UpperCasePipe, Star, RouterLink],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })

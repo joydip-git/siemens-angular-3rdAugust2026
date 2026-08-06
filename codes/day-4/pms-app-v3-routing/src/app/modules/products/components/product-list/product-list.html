@@ -5,7 +5,7 @@
 }@else if(products().length===0){
 <app-no-record [noRecordMessage]="message"></app-no-record>
 }@else {
-<table>
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Image</th>
@@ -15,25 +15,27 @@
             <th>Delete</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table-active">
         <!-- @for (p of products(); track $index) -->
         @for (p of products()|productFilter:filterText(); track $index)
         {
         <tr>
             <td>
-                <img [src]="p.imageUrl" alt="NA" [title]="p.productName" class="img-box">
+                <img [src]="p.imageUrl" alt="NA" [title]="p.productName" class="img-box"
+                    [routerLink]="['/products/view', p.productId]">
             </td>
             <td>
-                {{p.productName}}
+                {{p.productName|uppercase}}
             </td>
             <td>
-                {{p.price}}
+                {{p.price|currency:'INR'}}
             </td>
             <td>
-                {{p.starRating}}
+                <!-- {{p.starRating}} -->
+                <app-star [ratingValue]="p.starRating"></app-star>
             </td>
             <td>
-                <button type="button">Delete</button>
+                <button type="button" class="btn btn-danger">Delete</button>
             </td>
         </tr>
         }
