@@ -1,0 +1,21 @@
+<form ngForm (submit)="submit(frm.form)" #frm="ngForm">
+  <div>
+    <label for="txtEmail">Email:&nbsp;</label>
+    <input type="text" id="txtEmail" ngModel name="ctrlEmail" #emailInput="ngModel" required email placeholder="enter email">
+  </div>
+  @if (emailInput.control.invalid && (emailInput.control.dirty|| emailInput.control.touched)) {
+  @if(emailInput.control.errors?.['required']){
+  <div>email is required</div>
+  }
+  @if(emailInput.control.errors?.['email']){
+  <div>enter value email format</div>
+  }
+  }
+  <div>
+    <label for="txtName">Name: &nbsp;</label>
+    <input type="text" id="txtName" ngModel name="ctrlName" #nameInput="ngModel" placeholder="enter name">
+  </div>
+  <div>
+    <input type="submit" value="Submit" [disabled]="frm.invalid">
+  </div>
+</form>

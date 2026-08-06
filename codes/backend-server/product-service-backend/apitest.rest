@@ -57,3 +57,21 @@ DELETE http://127.0.0.1:3003/products/6
 
 ###
 DELETE http://127.0.0.1:3003/products/100
+
+###
+POST http://127.0.0.1:4000/auth/register
+Content-Type: application/json
+
+{
+    "username":"joy@gmail.com",
+    "password":"Joydip@123"
+}
+
+###
+POST http://127.0.0.1:4000/auth/login
+Content-Type: application/json
+
+{
+    "username":"joy@gmail.com",
+    "password":"Joydip@123"
+}

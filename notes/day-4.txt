@@ -44,3 +44,67 @@ or
 ---------------------------------------
 RouterOutlet [router-outlet] -> Acts as a placeholder that Angular dynamically fills based on the current router state.
 Each outlet can have a unique name, determined by the optional name attribute. The name cannot be set or changed
+
+Form Handling:
+--------------------
+a. template-driven from
+b. reactive form
+c. signal based form
+
+
+
+<form (submit)="submit()" [formGroup]="form">
+  <div>
+    <label for="txtEmail">Email:&nbsp;</label>
+    <!-- <input type="text" id="txtEmail" [formControl]="ctrlEmail"> -->
+    <input type="text" id="txtEmail" formControlName="ctrlEmail">
+  </div>
+
+  @if(ctrlEmail){
+  @if(ctrlEmail.invalid && (ctrlEmail.dirty || ctrlEmail.touched)){
+  <div>
+    @if(ctrlEmail.errors?.['required']){
+    <div>
+      email is required
+    </div>
+    }
+
+    @if(ctrlEmail.errors?.['email']){
+    <div>
+      enter in email format
+    </div>
+    }
+  </div>
+  }
+  }
+
+  <div>
+    <label for="txtName">Name: &nbsp;</label>
+    <!-- <input type="text" id="txtName" [formControl]="ctrlName"> -->
+    <input type="text" id="txtName" formControlName="ctrlName">
+  </div>
+
+  @if(ctrlName){
+  @if(ctrlName.invalid && (ctrlName.dirty || ctrlName.touched)){
+  <div>
+    @if(ctrlName.errors?.['required']){
+    <div>
+      name is required
+    </div>
+    }
+  </div>
+  }
+  }
+  <div>
+    <!-- <input type="submit" value="Submit" [disabled]="ctrlEmail.invalid || ctrlName.invalid"> -->
+    <input type="submit" value="Submit" [disabled]=""form.invalid">
+  </div>
+</form>
+
+
+
+
+
+
+
+
