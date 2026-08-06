@@ -1,27 +1,31 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-6-offest-3">
-            <form class="form-horizontal">
+            <form class="form-horizontal" [formGroup]="loginForm" (submit)="submit()">
 
                 <div class="form-group">
                     <label for="txtUserName" class="form-label mt-4">
                         Username:
                     </label>
-                    <input type="text" id="txtUserName" class="form-control">
+                    <input type="text" id="txtUserName" class="form-control" formControlName="username">
 
                     <!-- error displayer -->
-                    <!-- <div class="alert alert-danger">
-                        <div>
-
-                        </div>
-                    </div> -->
+                    @if(username){
+                    @if(username.invalid && (username.dirty || username.touched)){
+                    <div class="alert alert-danger">
+                        @if(username.errors?.['required']){
+                        <span>user name is required</span>
+                        }
+                    </div>
+                    }
+                    }
                 </div>
 
                 <div class="form-group">
                     <label for="txtPassword" class="form-label mt-4">
                         Password:
                     </label>
-                    <input type="password" id="txtPassword" class="form-control">
+                    <input type="password" id="txtPassword" class="form-control" formControlName="password">
 
                     <!-- error displayer -->
                     <!-- <div class="alert alert-danger">
