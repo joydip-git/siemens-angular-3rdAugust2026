@@ -1,0 +1,40 @@
+Routing in Angular:
+---------------------------
+client-side routing
+a adynamic mechanism to render a component in the HTML file based on routes
+no request goes to server, except the very first one
+
+1. built-in types:
+---------------------
+Route -> represents information about every route
+Routes -> an array of Route objects
+ActivatedRouteSnapshot -> a type that represents the current state of an ActivatedRoute
+RouterStateSnapshot -> a type that represents the current state of the RouterState
+
+2. built-in services:
+---------------------
+Router -> represents the core router engine
+	  an array or routes must be registered with router
+	  it can read URLs from browser and accordingly match it to a Route
+	  it can write to the browser (change the URL)
+	  provides different facilities, such as methods to navigate
+	  a component can ask for dependency injection of this
+
+ActivatedRoute -> represents the current route that one is navigating
+		  provides information about the path, component that is loaded, the outlet where it is loaded, any route parameter or query parameter and its data etc.
+		  a component can ask for depdendency injection of the same
+
+RouterState ->  tree of ActivatedRoute objects
+		represents the state of router
+
+
+3. built-in directives:
+------------------------
+routerLink -> 	helps to navigate without reloading the application
+		can form an URL when an array of URL fragments are passed by building the same from left to right
+		import RouterLink to use the same
+
+4. built-in component directive:
+---------------------------------------
+RouterOutlet -> Acts as a placeholder that Angular dynamically fills based on the current router state.
+Each outlet can have a unique name, determined by the optional name attribute. The name cannot be set or changed
