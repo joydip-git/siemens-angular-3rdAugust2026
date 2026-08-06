@@ -12,11 +12,17 @@
                     <!-- error displayer -->
                     @if(username){
                     @if(username.invalid && (username.dirty || username.touched)){
+
                     <div class="alert alert-danger">
                         @if(username.errors?.['required']){
-                        <span>user name is required</span>
+                        <span>username is required</span>
+                        }
+
+                        @if(username.errors?.['email']){
+                        <span>username should be in email format</span>
                         }
                     </div>
+
                     }
                     }
                 </div>
@@ -28,15 +34,20 @@
                     <input type="password" id="txtPassword" class="form-control" formControlName="password">
 
                     <!-- error displayer -->
-                    <!-- <div class="alert alert-danger">
-                        <div>
-                            
-                        </div>
-                    </div> -->
+                    @if(password){
+                    @if(password.invalid && (password.dirty || password.touched)){
+
+                    <div class="alert alert-danger">
+                        @if(password.errors?.['required']){
+                        <span>password is required</span>
+                        }
+                    </div>
+                    }
+                    }
                 </div>
 
                 <div class="container-fluid btn-center">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
                         Login
                     </button>
                 </div>
