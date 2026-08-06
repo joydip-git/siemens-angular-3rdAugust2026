@@ -1,5 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user';
+import { Subscription } from 'rxjs';
+import { TokenService } from '../../../shared/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +12,14 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {
+export class Login implements OnDestroy {
   private builder = inject(FormBuilder)
-  
+  private authSvc = inject(AuthService)
+  private tokenSvc = inject(TokenService)
+  private router = inject(Router)
+
+  private loginSubscription?: Subscription;
+
   loginForm = this.builder.group({
     username: ['enter user name', [Validators.required, Validators.email]],
     password: ['enter password', Validators.required]
@@ -23,6 +33,24 @@ export class Login {
   }
 
   submit() {
-    
+    const user = this.loginForm.value
+    this.loginSubscription = this.authSvc.login(user as User).subscribe({
+      next: (apiResponse) => {
+        if (apiResponse.data !== null) {
+          this.tokenSvc.getTokenStore().set(apiResponse.data)
+          this.router.navigate(['/products'])
+        } else {
+          window.alert('invalid user')
+        }
+      },
+      error: (err) => {
+        window.alert(err.message)
+      },
+      complete: () => { }
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.loginSubscription?.unsubscribe()
   }
 }
