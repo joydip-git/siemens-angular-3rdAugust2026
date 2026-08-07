@@ -1,0 +1,7 @@
+unit testing:
+-----------------------
+karma - test runner
+jasmine - test framework
+
+package installation:
+npm install --save-dev karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter jasmine-core @types/jasmine

@@ -1,0 +1,10 @@
+<h2>{{title}}</h2>
+<br>
+<div>
+  <label for="txtValue">New Title: &nbsp;</label>
+  <input type="text" id="txtValue" [value]="title" (input)="update($event.target.value)">
+</div>
+
+<br>
+<br>
+<app-todo-list></app-todo-list>
