@@ -5,3 +5,81 @@ jasmine - test framework
 
 package installation:
 npm install --save-dev karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter jasmine-core @types/jasmine
+
+A. change the setting in angular.json
+"test": {
+          "builder": "@angular/build:unit-test",
+
+	  //add this following section
+          "options": {
+            "runner": "karma", <-- choose "karma" instead of "vitest"
+            "coverage": true   <-- this is for code coverage
+          }
+
+        }
+
+B. change the setting in tsconfig.spec.json
+
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "types": [
+      // "vitest/globals" 	<-- comment this line
+      "jasmine" 		<-- add this line
+    ]
+  },
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.spec.ts"
+  ]
+}
+
+Using WebView2 element/control:
+---------------------------------
+The Microsoft Edge WebView2 control allows you to embed web technologies (HTML, CSS, and JavaScript) in your native apps. The WebView2 control uses Microsoft Edge as the rendering engine to display the web content in native apps.
+
+With WebView2, you can embed web code in different parts of your native app, or build all of the native app within a single WebView2 instance.
+
+The CoreWebView2 class is for the web-specific parts of the WebView2 control, including networking, navigation, script, and parsing and rendering HTML.
+
+SetVirtualHostNameToFolderMapping(String, String, CoreWebView2HostResourceAccessKind) method:
+----------------------------------------------------------------------------------------------------
+Sets a mapping between a virtual host name and a folder path to make available to web sites via that host name.
+
+
+Playwright test commands:
+----------------------------
+Inside that directory, you can run several commands:
+
+  npx playwright test
+    Runs the end-to-end tests.
+
+  npx playwright test --ui
+    Starts the interactive UI mode.
+
+  npx playwright test --project=chromium
+    Runs the tests only on Desktop Chrome.
+
+  npx playwright test example
+    Runs the tests in a specific file.
+
+  npx playwright test --debug
+    Runs the tests in debug mode.
+
+  npx playwright codegen
+    Auto generate tests with Codegen.
+
+We suggest that you begin by typing:
+
+    npx playwright test
+
+And check out the following files:
+  - .\tests\example.spec.ts - Example end-to-end test
+  - .\playwright.config.ts - Playwright Test configuration
+
+Visit https://playwright.dev/docs/intro for more information. ✨
+
+PlaywrightTestArgs.page -> Page
+Page:
+Isolated Page instance, created for each test. Pages are isolated between tests due to fixtures.context isolation.
