@@ -23,7 +23,9 @@ export class ProductList implements OnInit, OnDestroy {
   errorInfo = signal('')
   isRequestOver = signal(false)
   filterText: InputSignal<string> = input<string>('', { alias: 'filterValue' })
+
   private fetchSubscription?: Subscription;
+  private deleteSubscription?: Subscription;
   private productSvc: ServiceContract = inject<ServiceContract>(PRODUCT_SERVICE_TOKEN)
 
   ngOnInit(): void {
@@ -31,6 +33,22 @@ export class ProductList implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.fetchSubscription?.unsubscribe()
+  }
+
+  delete(id: number) {
+    if (window.confirm('delete?')) {
+      this.deleteSubscription = this.productSvc.deleteProduct(id).subscribe({
+        next: (apiResponse) => {
+          if (apiResponse.data !== null) {
+            window.alert('deleted')
+          } else {
+            window.alert('not deleted beacuse: ' + apiResponse.message)
+          }
+        },
+        error: (err) => { window.alert('not deleted because: ' + err.message) },
+        complete: () => { this.fetchProducts() }
+      })
+    }
   }
   private fetchProducts() {
     const obs: Observable<ApiResponse<Product[]>> = this.productSvc

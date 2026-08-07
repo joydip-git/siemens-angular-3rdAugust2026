@@ -28,6 +28,6 @@ export class ProductService implements ServiceContract {
   }
 
   updateProduct(id: number, p: Product): Observable<ApiResponse<Product[]>> {
-    throw new Error('Method not implemented.');
+    return this._http.put<ApiResponse<Product[]>>(`${PRODUCT_API_URL}/${id}`, p)
   }
 }

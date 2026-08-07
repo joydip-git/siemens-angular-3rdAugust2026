@@ -8,6 +8,7 @@ import { Star } from "../../../shared/components/star/star";
 import { Subscription } from 'rxjs';
 import { ServiceContract } from '../../services/service-contract';
 import { PRODUCT_SERVICE_TOKEN } from '../../../../config/constants';
+import { ProductStoreService } from '../../services/product-store.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -24,6 +25,7 @@ export class ProductDetail implements OnInit, OnDestroy {
   private productSvc = inject<ServiceContract>(PRODUCT_SERVICE_TOKEN)
   private currentRoute = inject(ActivatedRoute)
   private router = inject(Router)
+  private productStoreSvc = inject(ProductStoreService)
   private fetchSubscription?: Subscription;
 
   ngOnInit(): void {
@@ -35,6 +37,10 @@ export class ProductDetail implements OnInit, OnDestroy {
   }
 
   goToEdit() {
+    //saving the product to be shared with EditProduct component
+    this.productStoreSvc.productStore.set(this.product())
+
+    //redirecting to EditProduct component
     this.router.navigate(['/products/edit'], {
       queryParams: {
         id: this.product()?.productId

@@ -35,7 +35,7 @@
                 <app-star [ratingValue]="p.starRating"></app-star>
             </td>
             <td>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger" (click)="delete(p.productId)">Delete</button>
             </td>
         </tr>
         }

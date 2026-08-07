@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import { Subscription } from 'rxjs';
 import { TokenService } from '../../../shared/services/token.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +17,7 @@ export class Login implements OnDestroy {
   private authSvc = inject(AuthService)
   private tokenSvc = inject(TokenService)
   private router = inject(Router)
+  private currentRoute = inject(ActivatedRoute)
 
   private loginSubscription?: Subscription;
 
@@ -37,8 +38,17 @@ export class Login implements OnDestroy {
     this.loginSubscription = this.authSvc.login(user as User).subscribe({
       next: (apiResponse) => {
         if (apiResponse.data !== null) {
+          //save the token in signal
           this.tokenSvc.getTokenStore().set(apiResponse.data)
-          this.router.navigate(['/products'])
+
+          //redirect
+          const snapshot = this.currentRoute.snapshot;
+          const queryParams = snapshot.queryParams;
+          const returnUrl = queryParams["returnUrl"]
+          if (returnUrl) {
+            this.router.navigate([returnUrl])
+          } else
+            this.router.navigate(['/products'])
         } else {
           window.alert('invalid user')
         }

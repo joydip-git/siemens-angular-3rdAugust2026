@@ -6,11 +6,13 @@ import { AddProduct } from './modules/products/components/add-product/add-produc
 import { Home } from './modules/shared/components/home/home';
 import { PageNotFound } from './modules/shared/components/page-not-found/page-not-found';
 import { Login } from './modules/auth/components/login/login';
+import { ProductGuard } from './modules/shared/services/product.guard';
 
 export const routes: Routes = [
     { path: 'login', component: Login },
     {
         path: 'products',
+        canActivate: [ProductGuard],
         children: [
             { path: '', component: ProductContainer },
             { path: 'view/:id', component: ProductDetail },
